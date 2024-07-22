@@ -1,12 +1,14 @@
-import { CoreConceptsData } from './data'
+import { useState } from 'react';
+import { CoreConceptsData, EXAMPLES } from './data'
 import Header from "./components/Header/Header"
 import { CoreConcept } from "./components/CoreConcept";
 import TabButton from './components/TabButton';
 
 function App() {
+  const [tabContent, setTabContent] = useState(1);
 
-  function handleSelect() {
-    console.log('clicked');
+  function handleSelect(selctedButton) {
+    setTabContent(selctedButton);
   }
 
   return (
@@ -16,32 +18,32 @@ function App() {
         <section id="core-concepts">
           <h2>Coer Concepts</h2>
           <ul>
-            <CoreConcept
-              { ...CoreConceptsData[0] }
-            />
-            <CoreConcept
-              { ...CoreConceptsData[1] }
-            />
-            <CoreConcept
-              { ...CoreConceptsData[2] }
-            />
-            <CoreConcept
-              title={ CoreConceptsData[3].title }
-              description={ CoreConceptsData[3].description }
-              image={ CoreConceptsData[3].image }
-            />
-
+            { CoreConceptsData.map((content, index) =>
+              <CoreConcept
+                key={ index }
+                { ...CoreConceptsData[index] }
+              />
+            ) }
           </ul>
         </section>
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={ handleSelect }>components</TabButton>
-            <TabButton onSelect={ handleSelect }>JSX</TabButton>
-            <TabButton onSelect={ handleSelect }>Props</TabButton>
-            <TabButton onSelect={ handleSelect }>State</TabButton>
+            <TabButton isSelected={ tabContent === 1 } tabContent onSelect={ () => handleSelect(1) }>components</TabButton>
+            <TabButton isSelected={ tabContent === 2 } onSelect={ () => handleSelect(2) }>JSX</TabButton>
+            <TabButton isSelected={ tabContent === 3 } onSelect={ () => handleSelect(3) }>Props</TabButton>
+            <TabButton isSelected={ tabContent === 4 } onSelect={ () => handleSelect(4) }>State</TabButton>
           </menu>
-          Dynamic Contect
+          { !tabContent ? <p>Select a tab to view the content</p> :
+            <div id="tab-content">
+              <h3>{ EXAMPLES[tabContent].title }</h3>
+              <p>{ EXAMPLES[tabContent].description }</p>
+              <pre>
+                <code>
+                  { EXAMPLES[tabContent].code }
+                </code>
+              </pre>
+            </div> }
         </section>
       </main> 
     </div>
