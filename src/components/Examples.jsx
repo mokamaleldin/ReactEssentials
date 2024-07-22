@@ -12,6 +12,7 @@ export default function Examples() {
         <section id="examples">
             <h2>Examples</h2>
             <menu>
+                
                 <TabButton isSelected={ tabContent === 1 } tabContent onSelect={ () => handleSelect(1) }>components</TabButton>
                 <TabButton isSelected={ tabContent === 2 } onSelect={ () => handleSelect(2) }>JSX</TabButton>
                 <TabButton isSelected={ tabContent === 3 } onSelect={ () => handleSelect(3) }>Props</TabButton>
