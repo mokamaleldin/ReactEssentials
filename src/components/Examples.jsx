@@ -13,12 +13,14 @@ export default function Examples() {
     return (
         <Section title={ 'Examples' } id="examples">
             <Tabs
+                buttonsContainer="menu"
                 buttons={ <>
                     <TabButton isSelected={ tabContent === 1 } onClick={ () => handleSelect(1) }>components</TabButton>
                     <TabButton isSelected={ tabContent === 2 } onClick={ () => handleSelect(2) }>JSX</TabButton>
                     <TabButton isSelected={ tabContent === 3 } onClick={ () => handleSelect(3) }>Props</TabButton>
                     <TabButton isSelected={ tabContent === 4 } onClick={ () => handleSelect(4) }>State</TabButton>
-                </> }>
+                </> }
+            >
 
             { !tabContent ? <p>Select a tab to view the content</p> :
                 <div id="tab-content">
