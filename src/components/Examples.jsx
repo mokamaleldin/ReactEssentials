@@ -1,6 +1,7 @@
 import { EXAMPLES } from '../data'
 import { useState } from 'react';
 import TabButton from './TabButton';
+import Section from './Section';
 
 export default function Examples() {
     const [tabContent, setTabContent] = useState(1);
@@ -9,14 +10,13 @@ export default function Examples() {
         setTabContent(selctedButton);
     }
     return (
-        <section id="examples">
-            <h2>Examples</h2>
+        <Section title={ 'Examples' } id="examples">
             <menu>
                 
-                <TabButton isSelected={ tabContent === 1 } tabContent onSelect={ () => handleSelect(1) }>components</TabButton>
-                <TabButton isSelected={ tabContent === 2 } onSelect={ () => handleSelect(2) }>JSX</TabButton>
-                <TabButton isSelected={ tabContent === 3 } onSelect={ () => handleSelect(3) }>Props</TabButton>
-                <TabButton isSelected={ tabContent === 4 } onSelect={ () => handleSelect(4) }>State</TabButton>
+                <TabButton isSelected={ tabContent === 1 } onClick={ () => handleSelect(1) }>components</TabButton>
+                <TabButton isSelected={ tabContent === 2 } onClick={ () => handleSelect(2) }>JSX</TabButton>
+                <TabButton isSelected={ tabContent === 3 } onClick={ () => handleSelect(3) }>Props</TabButton>
+                <TabButton isSelected={ tabContent === 4 } onClick={ () => handleSelect(4) }>State</TabButton>
             </menu>
             { !tabContent ? <p>Select a tab to view the content</p> :
                 <div id="tab-content">
@@ -28,6 +28,6 @@ export default function Examples() {
                         </code>
                     </pre>
                 </div> }
-        </section>
+        </Section>
     )
 }
